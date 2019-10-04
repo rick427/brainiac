@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import Particles from 'react-particles-js';
+import Navigation from './components/Navigation/Navigation';
+import Logo from './components/logo/Logo';
+import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
+import Rank from './components/rank/Rank';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const options = {
+  particles: {
+    number:{
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    }
+  }
+}
+
+class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      input: ''
+    }
+  }
+
+  onInputChange = e => {
+    console.log(e.target.value);
+  }
+
+  onSubmit = () => {
+    console.log('Clicked')
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Particles className="particles" params={options}/>
+        <Navigation/>
+        <Logo/>
+        <Rank/>
+        <ImageLinkForm onInputChange={this.onInputChange} onBtnSubmit={this.onSubmit}/>
+      </div>
+    );
+  }
 }
 
 export default App;
